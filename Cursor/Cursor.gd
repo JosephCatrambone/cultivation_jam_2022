@@ -89,6 +89,8 @@ func _process(delta):
 #PhysicsServer.space_get_direct_state()
 func _input(event):
 	if (not self.open) and (event is InputEventMouseButton) and (event.pressed and event.button_index == 1):
+		self.target = null
+		self.hit_position = Vector3.ZERO
 		var camera = get_viewport().get_camera()
 		var from = camera.project_ray_origin(event.position)
 		var to = from + camera.project_ray_normal(event.position) * ray_length
