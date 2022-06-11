@@ -89,30 +89,7 @@ func _process(delta):
 #PhysicsServer.space_get_direct_state()
 func _input(event):
 	if (not self.open) and (event is InputEventMouseButton) and (event.pressed and event.button_index == 1):
-		self.target = null
-		self.hit_position = Vector3.ZERO
-		var camera = get_viewport().get_camera()
-		var from = camera.project_ray_origin(event.position)
-		var to = from + camera.project_ray_normal(event.position) * ray_length
-		var space:PhysicsDirectSpaceState = camera.get_world().direct_space_state
-		var hit = space.intersect_ray(from, to, [self], 0x7FFFFFFF, true, true)
-		if hit:
-			var collider = hit["collider"]
-			if collider:
-				self.hit_position = hit["position"]
-				# Move up the stack and keep trying things until we get a hit.
-				while collider != null and collider != get_tree().root:
-					if collider.has_method("get_interactions"):
-						self.target = collider
-						var interactions = collider.get_interactions()
-						self.open_menu(interactions)
-						break
-					elif collider.has_method("interact"):
-						self.target = collider
-						collider.interact(null, self.hit_position)
-						break
-					else:
-						collider = collider.get_parent()
+		pass
 
 # When the mouse button is pressed, get a list of all possible commands
 # Spawn one button for each, add callbacks, and quickly tweent hem onscreen.
