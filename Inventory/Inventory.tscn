@@ -1,12 +1,13 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Inventory/InventoryDisplay.gd" type="Script" id=1]
+[ext_resource path="res://Inventory/Inventory.gd" type="Script" id=1]
 [ext_resource path="res://Assets/grid_cell_invalid.png" type="Texture" id=3]
 [ext_resource path="res://Assets/grid_cell_full.png" type="Texture" id=4]
 [ext_resource path="res://Assets/grid_cell_highlighted.png" type="Texture" id=5]
 [ext_resource path="res://Assets/grid_cell_empty.png" type="Texture" id=6]
 
 [node name="Inventory" type="PanelContainer"]
+visible = false
 margin_right = 78.0
 margin_bottom = 78.0
 script = ExtResource( 1 )

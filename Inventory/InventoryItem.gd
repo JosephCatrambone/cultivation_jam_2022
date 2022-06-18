@@ -7,9 +7,9 @@ const INVENTORY_CELL_HEIGHT:int = 64
 
 export(int) var inventory_width:int = 1
 export(int) var inventory_height:int = 1
+
 var occupied_cells:Array = []
 var inventory_rotation:int = 0
-
 var spawned_node_reference:Spatial
 var unspawned_node_reference:Resource
 
