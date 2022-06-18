@@ -18,6 +18,8 @@ script = ExtResource( 1 )
 
 [node name="CSGBox" type="CSGBox" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+use_collision = true
+collision_mask = 7
 width = 11.0
 height = 3.0
 depth = 11.0

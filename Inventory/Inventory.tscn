@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Inventory/Inventory.gd" type="Script" id=1]
+[ext_resource path="res://Assets/grid_cell_invalid.png" type="Texture" id=3]
+[ext_resource path="res://Assets/grid_cell_full.png" type="Texture" id=4]
+[ext_resource path="res://Assets/grid_cell_highlighted.png" type="Texture" id=5]
+[ext_resource path="res://Assets/grid_cell_empty.png" type="Texture" id=6]
+
+[node name="Inventory" type="PanelContainer"]
+margin_right = 78.0
+margin_bottom = 78.0
+script = ExtResource( 1 )
+empty_cell_texture = ExtResource( 6 )
+full_cell_texture = ExtResource( 4 )
+highlighted_cell_texture = ExtResource( 5 )
+invalid_cell_texture = ExtResource( 3 )
+
+[node name="Cells" type="GridContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 71.0
+margin_bottom = 71.0
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
+columns = 8
+
+[node name="Items" type="Control" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 71.0
+margin_bottom = 71.0
+
+[node name="Cursor" type="NinePatchRect" parent="."]
+self_modulate = Color( 1, 1, 1, 0.309804 )
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 71.0
+margin_bottom = 71.0
+rect_min_size = Vector2( 64, 64 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 5 )
+patch_margin_left = 27
+patch_margin_top = 28
+patch_margin_right = 28
+patch_margin_bottom = 29
+
+[node name="DraggedItemTexture" type="TextureRect" parent="Cursor"]
+self_modulate = Color( 1, 0.980392, 0.831373, 0.745098 )
+margin_right = 64.0
+margin_bottom = 64.0
+stretch_mode = 3
+
+[node name="CursorTween" type="Tween" parent="."]

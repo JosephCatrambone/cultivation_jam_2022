@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Pickups/Pickup.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Inventory/SeedInventoryItem.tscn" type="PackedScene" id=2]
+
+[sub_resource type="CapsuleMesh" id=1]
+
+[sub_resource type="CapsuleShape" id=2]
+
+[node name="SeedPickup" instance=ExtResource( 1 )]
+inventory_item_path = NodePath("SeedInventoryItem")
+
+[node name="MeshInstance" type="MeshInstance" parent="." index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+mesh = SubResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="." index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+shape = SubResource( 2 )
+
+[node name="SeedInventoryItem" parent="." index="2" instance=ExtResource( 2 )]

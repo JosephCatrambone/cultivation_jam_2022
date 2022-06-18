@@ -15,5 +15,5 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func interact(args = null):
+func interact(actor:Node = null, args = null):
 	self.queue_free()

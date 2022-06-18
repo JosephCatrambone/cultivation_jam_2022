@@ -8,11 +8,25 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "TextureButton",
+"class": "InventoryItem",
+"language": "GDScript",
+"path": "res://Inventory/InventoryItem.gd"
+} ]
+_global_script_class_icons={
+"InventoryItem": ""
+}
+
 [application]
 
 config/name="Cultivation Jam 2022"
 run/main_scene="res://MainGame/MainGame.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Globals="*res://Globals.gd"
 
 [display]
 

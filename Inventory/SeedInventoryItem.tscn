@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/seed.png" type="Texture" id=1]
+[ext_resource path="res://Inventory/InventoryItem.tscn" type="PackedScene" id=2]
+
+[node name="InventoryTrait" instance=ExtResource( 2 )]
+texture_normal = ExtResource( 1 )
