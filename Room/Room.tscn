@@ -1,0 +1,60 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Room/Room.gd" type="Script" id=1]
+
+[node name="Room" type="Spatial"]
+script = ExtResource( 1 )
+active_layout = "HubRoom"
+
+[node name="Layouts" type="Node" parent="."]
+
+[node name="RingRoomLayoutA" type="CSGBox" parent="Layouts"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+visible = false
+use_collision = true
+collision_mask = 2
+width = 10.0
+height = 4.0
+depth = 10.0
+
+[node name="Interior" type="CSGBox" parent="Layouts/RingRoomLayoutA"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+operation = 2
+width = 9.0
+height = 4.0
+depth = 9.0
+
+[node name="RingRoomLayoutB" type="CSGBox" parent="Layouts"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+visible = false
+use_collision = true
+collision_mask = 2
+width = 10.0
+height = 4.0
+depth = 10.0
+
+[node name="Interior" type="CSGBox" parent="Layouts/RingRoomLayoutB"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+operation = 2
+width = 9.0
+height = 4.0
+depth = 9.0
+
+[node name="HubRoom" type="CSGCylinder" parent="Layouts"]
+transform = Transform( 0.923879, 0, 0.382683, 0, 1, 0, -0.382683, 0, 0.923879, 0, -1, 0 )
+use_collision = true
+collision_mask = 2
+radius = 6.0
+height = 8.0
+
+[node name="Interior" type="CSGCylinder" parent="Layouts/HubRoom"]
+transform = Transform( 1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, 1, 0, 3, 0 )
+operation = 2
+radius = 5.0
+height = 4.0
+
+[node name="GarbageChute" type="CSGCylinder" parent="Layouts/HubRoom"]
+transform = Transform( 1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, 1, 0, -2, 0 )
+operation = 2
+radius = 1.5
+height = 8.0

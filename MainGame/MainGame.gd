@@ -1,6 +1,6 @@
 extends Spatial
 
-onready var current_room = $RingModule
+onready var current_room = $Room
 onready var player = $Player
 
 # Called when the node enters the scene tree for the first time.
