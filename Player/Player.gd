@@ -23,8 +23,19 @@ func _broadcast_spawn():
 	Globals.emit_signal("player_spawned", self)
 
 func _process(delta):
+	if Globals.active_menu != null:
+		return
 	self.handle_movement_input(delta)
 	self.handle_interact_input()
+
+func save() -> Dictionary:
+	var save_state = {
+		"resource": "res://Player/Player.tscn"
+	}
+	return save_state
+
+func restore(saved_state:Dictionary):
+	pass
 
 func handle_movement_input(delta):
 	# Get the direction the user is pressing.
@@ -37,7 +48,6 @@ func handle_movement_input(delta):
 	if self.volition_vector:
 		self.player_facing_pivot.look_at(self.player_facing_pivot.global_transform.origin + self.volition_vector, Vector3.UP)
 	
-
 # Some hacky ergonomic stuff:
 # if only one object is selected, use it, but if multiple things could be interacted with, try and
 # raycast to just one.

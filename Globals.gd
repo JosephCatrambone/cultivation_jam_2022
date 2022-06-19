@@ -3,4 +3,6 @@ extends Node
 signal player_spawned(player)
 signal player_died(player)
 
-var inventory_cell_size:int = 64
+const INVENTORY_CELL_SIZE:int = 64
+var active_menu:Node = null
+var player_name:String = "test"
