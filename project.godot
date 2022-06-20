@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "InventoryItem",
 "language": "GDScript",
 "path": "res://Inventory/InventoryItem.gd"
+}, {
+"base": "Resource",
+"class": "SaveGame",
+"language": "GDScript",
+"path": "res://MainGame/SaveGame.gd"
 } ]
 _global_script_class_icons={
-"InventoryItem": ""
+"InventoryItem": "",
+"SaveGame": ""
 }
 
 [application]

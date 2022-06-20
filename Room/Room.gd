@@ -14,16 +14,23 @@ func _ready():
 		layout.visible = true
 		self.layouts.remove_child(layout)
 	self.set_active_layout(self.active_layout)
+	
+func _process(delta):
+	pass
 
 func set_active_layout(layout_name:String):
 	# Get the current layout and maybe deactivate it.
 	var current_layout = self.get_node_or_null(self.active_layout)
 	if current_layout != null:
+		# TODO: Race condition where going back and forth too fast leads _current_layout to be null.
 		self.remove_child(current_layout)
 	
 	if self.rooms.has(layout_name):
 		self.add_child(self.rooms[layout_name])
 		self.active_layout = layout_name
+
+func get_active_layout() -> Node:
+	return self.get_node_or_null(self.active_layout)
 
 func save() -> Dictionary:
 	# HACK: Everything that implements save has to give back a resource inside which says what to instance.

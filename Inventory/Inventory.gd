@@ -1,5 +1,7 @@
 extends Control
 
+# In hindsight, maybe I should have made this a resource.
+
 signal cursor_moved_out(dx, dy)  # When a cursor moves out of the frame, this is emitted.  dx is -1 for left side, +1 for right.  dy is -1 for top, +1 for bottom.  Will be emitted in addition to calling on_entered on the neighbor.
 signal item_dragged_out(item, dx, dy)  # When the cursor moves out of frame with an item dragged, this is emitted.
 
@@ -265,4 +267,9 @@ func add_item(item:InventoryItem) -> bool:
 				self._update_cell_status()
 				return true
 	return false
+	
+func save() -> Dictionary:
+	return {}
 
+func restore(saved_state:Dictionary) -> void:
+	pass

@@ -1,11 +1,19 @@
 extends Spatial
 
-onready var current_room = $Room
-onready var player = $Player
+onready var rooms:Spatial = $Room
+onready var player:Spatial = $Player
+
+var waste_disposal_level_generator = preload("res://WasteDisposalLevel/WasteDisposalLevel.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	self.start_dungeon()
+
+func start_dungeon():
+	self.remove_child(self.rooms)
+	var dungeon = waste_disposal_level_generator.instance()
+	self.add_child(dungeon)
+	self.player.translation = Vector3(0, 0, 0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -13,6 +21,11 @@ func _process(delta):
 		self.save_game("user://save_game_" + Globals.player_name + ".json")
 	if Input.is_action_just_released("ui_end"):
 		self.load_game("user://save_game_" + Globals.player_name + ".json")
+
+func change_scene(new_scene:String, target_location_path:String):
+	rooms.set_active_layout(new_scene)
+	var target_location:Position3D = rooms.get_active_layout().get_node(target_location_path)
+	player.translation = target_location.translation
 
 # Options for changing scenes:
 # 1. WE CANNOT JUST MARK INACTIVE ONES AS INVISIBLE! (Because collision still runs.)
@@ -37,8 +50,8 @@ func load_game(filename:String):
 	# Destroy old room and old player:
 	self.remove_child(self.player)
 	self.player.queue_free()
-	self.remove_child(self.current_room)
-	self.current_room.queue_free()
+	self.remove_child(self.rooms)
+	self.rooms.queue_free()
 	
 	# Restore the player:
 	self.player = load(saved_state["player"]["resource"]).instance()
@@ -46,9 +59,9 @@ func load_game(filename:String):
 	self.add_child(self.player)
 	
 	# Restore the level.
-	self.current_room = load(saved_state["current_room"]["resource"]).instance()
-	self.current_room.restore(saved_state["current_room"])
-	self.add_child(self.current_room)
+	self.rooms = load(saved_state["rooms"]["resource"]).instance()
+	self.rooms.restore(saved_state["rooms"])
+	self.add_child(self.rooms)
 	
 	fin.close()
 	
@@ -79,7 +92,7 @@ func save_game(filename:String):
 	
 	var save_state:Dictionary = {
 		"player": self.player.save(),
-		"current_room": self.current_room.save()
+		"rooms": self.rooms.save()
 	}
 	
 	fout.store_line(to_json(save_state))
