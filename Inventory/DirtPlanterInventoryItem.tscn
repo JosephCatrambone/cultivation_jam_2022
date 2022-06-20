@@ -7,3 +7,4 @@
 texture_normal = ExtResource( 2 )
 inventory_width = 2
 inventory_height = 2
+hack_reflection_resource_name = "res://Inventory/DirtPlanterInventoryItem.tscn"

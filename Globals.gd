@@ -7,6 +7,7 @@ const PLAYER_GROUP:String = "players"
 const INVENTORY_CELL_SIZE:int = 64
 var active_menu:Node = null
 var player_name:String = "test"
+var rng:RandomNumberGenerator = RandomNumberGenerator.new()
 
 func get_player() -> KinematicBody:
 	# Don't run this in a loop because it's kinda' expensive.

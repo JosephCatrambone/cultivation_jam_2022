@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Room/Room.gd" type="Script" id=1]
 [ext_resource path="res://Room/SceneChangeTrigger.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/WADTextures/Door.png" type="Texture" id=3]
-[ext_resource path="res://Planters/DirtPlanter.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ModuleFloorTile/ModuleFloorTile.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Pickups/SeedPickup.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Elevator/Elevator.tscn" type="PackedScene" id=6]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 1, 1, 0.499875 )
@@ -23,7 +24,6 @@ active_layout = "HubRoom"
 
 [node name="RingRoomLayoutA" type="CSGBox" parent="Layouts"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
-visible = false
 use_collision = true
 collision_mask = 2
 width = 10.0
@@ -52,17 +52,101 @@ material/0 = SubResource( 3 )
 [node name="Entryway" type="Position3D" parent="Layouts/RingRoomLayoutA"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2 )
 
-[node name="DirtPlanter" parent="Layouts/RingRoomLayoutA" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -3 )
-
-[node name="DirtPlanter2" parent="Layouts/RingRoomLayoutA" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -1 )
-
 [node name="SeedPickup" parent="Layouts/RingRoomLayoutA" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -1, 0 )
 
 [node name="SeedPickup2" parent="Layouts/RingRoomLayoutA" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -1, 2 )
+
+[node name="FloorTile1" parent="Layouts/RingRoomLayoutA" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -1, -2 )
+
+[node name="FloorTile2" parent="Layouts/RingRoomLayoutA" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -1, -3 )
+
+[node name="FloorTile3" parent="Layouts/RingRoomLayoutA" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -1, -4 )
+
+[node name="FloorTile4" parent="Layouts/RingRoomLayoutA" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -1, -2 )
+
+[node name="FloorTile5" parent="Layouts/RingRoomLayoutA" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -1, -3 )
+
+[node name="FloorTile6" parent="Layouts/RingRoomLayoutA" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -1, -4 )
+
+[node name="FloorTile7" parent="Layouts/RingRoomLayoutA" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -2 )
+
+[node name="FloorTile8" parent="Layouts/RingRoomLayoutA" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -3 )
+
+[node name="FloorTile9" parent="Layouts/RingRoomLayoutA" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -4 )
+
+[node name="FloorTile10" parent="Layouts/RingRoomLayoutA" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1, -2 )
+
+[node name="FloorTile11" parent="Layouts/RingRoomLayoutA" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1, -3 )
+
+[node name="FloorTile12" parent="Layouts/RingRoomLayoutA" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1, -4 )
+
+[node name="FloorTile13" parent="Layouts/RingRoomLayoutA" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -1, -2 )
+
+[node name="FloorTile14" parent="Layouts/RingRoomLayoutA" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -1, -3 )
+
+[node name="FloorTile15" parent="Layouts/RingRoomLayoutA" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -1, -4 )
+
+[node name="FloorTile16" parent="Layouts/RingRoomLayoutA" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -1, 2 )
+
+[node name="FloorTile17" parent="Layouts/RingRoomLayoutA" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -1, 1 )
+
+[node name="FloorTile18" parent="Layouts/RingRoomLayoutA" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -1, 0 )
+
+[node name="FloorTile19" parent="Layouts/RingRoomLayoutA" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -1, 2 )
+
+[node name="FloorTile20" parent="Layouts/RingRoomLayoutA" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -1, 1 )
+
+[node name="FloorTile21" parent="Layouts/RingRoomLayoutA" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -1, 0 )
+
+[node name="FloorTile22" parent="Layouts/RingRoomLayoutA" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 2 )
+
+[node name="FloorTile23" parent="Layouts/RingRoomLayoutA" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 1 )
+
+[node name="FloorTile24" parent="Layouts/RingRoomLayoutA" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+
+[node name="FloorTile25" parent="Layouts/RingRoomLayoutA" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1, 2 )
+
+[node name="FloorTile26" parent="Layouts/RingRoomLayoutA" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1, 1 )
+
+[node name="FloorTile27" parent="Layouts/RingRoomLayoutA" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1, 0 )
+
+[node name="FloorTile28" parent="Layouts/RingRoomLayoutA" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -1, 2 )
+
+[node name="FloorTile29" parent="Layouts/RingRoomLayoutA" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -1, 1 )
+
+[node name="FloorTile30" parent="Layouts/RingRoomLayoutA" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -1, 0 )
 
 [node name="RingRoomLayoutB" type="CSGBox" parent="Layouts"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
@@ -94,12 +178,6 @@ operation = 2
 radius = 5.0
 height = 4.0
 
-[node name="GarbageChute" type="CSGCylinder" parent="Layouts/HubRoom"]
-transform = Transform( 1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, 1, 0, -2, 0 )
-operation = 2
-radius = 1.5
-height = 8.0
-
 [node name="RingADoorTrigger" parent="Layouts/HubRoom" instance=ExtResource( 2 )]
 transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 4, 2.07655, -2 )
 target_scene = "RingRoomLayoutA"
@@ -114,3 +192,6 @@ material/0 = SubResource( 3 )
 
 [node name="RingADoor" type="Position3D" parent="Layouts/HubRoom"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -2 )
+
+[node name="Elevator" parent="Layouts/HubRoom" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )

@@ -89,6 +89,7 @@ radius = 0.447209
 height = 0.0878677
 
 [node name="Player" type="KinematicBody" groups=["players"]]
+collision_mask = 7
 script = ExtResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -102,14 +103,14 @@ __meta__ = {
 }
 
 [node name="UseRay" type="RayCast" parent="PlayerFacing"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.25 )
 enabled = true
-cast_to = Vector3( 0, 0, -2 )
+cast_to = Vector3( 0, -1.5, -0.5 )
 collision_mask = 5
 
 [node name="UseArea" type="Area" parent="PlayerFacing"]
 collision_layer = 4
-collision_mask = 6
+collision_mask = 4
 input_ray_pickable = false
 
 [node name="CollisionShape" type="CollisionShape" parent="PlayerFacing/UseArea"]

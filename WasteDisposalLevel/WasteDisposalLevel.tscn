@@ -1,13 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://WasteDisposalLevel/WasteDisposalLevel.gd" type="Script" id=1]
 [ext_resource path="res://WasteDisposalLevel/CameraController.gd" type="Script" id=2]
+[ext_resource path="res://Elevator/Elevator.tscn" type="PackedScene" id=3]
 
 [node name="WasteDisposalLevel" type="Spatial"]
 script = ExtResource( 1 )
 
 [node name="RoomGeometry" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 2, -3 )
 use_collision = true
 collision_mask = 2
 width = 21.0
@@ -22,8 +23,97 @@ height = 6.0
 depth = 20.0
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 5, 7 )
+transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 7, 7 )
 fov = 80.0
 script = ExtResource( 2 )
-tracking_offset = Vector3( 0, 5, 5 )
+tracking_offset = Vector3( 0, 7, 5 )
 smoothing_amount = 10.0
+
+[node name="Elevator" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9 )
+
+[node name="PileLocations" type="Spatial" parent="."]
+
+[node name="Location1" type="Position3D" parent="PileLocations"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00433731, 0, -2.19201 )
+
+[node name="Location2" type="Position3D" parent="PileLocations"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.96336, 0, 1.28662 )
+
+[node name="Location3" type="Position3D" parent="PileLocations"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.29537, 0, -1.12232 )
+
+[node name="Location4" type="Position3D" parent="PileLocations"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.37364, 0, -0.725971 )
+
+[node name="Location5" type="Position3D" parent="PileLocations"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.85284, 0, -3.74171 )
+
+[node name="Location6" type="Position3D" parent="PileLocations"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.613804, 0, -5.84804 )
+
+[node name="Location7" type="Position3D" parent="PileLocations"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.64039, 0, -8.28761 )
+
+[node name="Location8" type="Position3D" parent="PileLocations"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.07038, 0, -7.9732 )
+
+[node name="Location9" type="Position3D" parent="PileLocations"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.83804, 0, -11.7035 )
+
+[node name="Location10" type="Position3D" parent="PileLocations"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.48263, 0, -5.80386 )
+
+[node name="Location11" type="Position3D" parent="PileLocations"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1997, 0, -3.44027 )
+
+[node name="Location12" type="Position3D" parent="PileLocations"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.02075, 0, -1.01995 )
+
+[node name="Location13" type="Position3D" parent="PileLocations"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.84923, 0, 2.31893 )
+
+[node name="Location14" type="Position3D" parent="PileLocations"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.88744, 0, 4.53329 )
+
+[node name="Location15" type="Position3D" parent="PileLocations"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.622821, 0, 4.51213 )
+
+[node name="Location16" type="Position3D" parent="PileLocations"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.491894, 0, 1.24303 )
+
+[node name="Location17" type="Position3D" parent="PileLocations"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.00718, 0, 1.65117 )
+
+[node name="Location18" type="Position3D" parent="PileLocations"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.48519, 0, 4.75063 )
+
+[node name="Location19" type="Position3D" parent="PileLocations"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3358, 0, -2.03484 )
+
+[node name="Location20" type="Position3D" parent="PileLocations"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.18607, 0, 1.85847 )
+
+[node name="Location21" type="Position3D" parent="PileLocations"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.63118, 0, -6.29128 )
+
+[node name="Location22" type="Position3D" parent="PileLocations"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5565, 0, -7.09386 )
+
+[node name="Location23" type="Position3D" parent="PileLocations"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.15016, 0, -0.12036 )
+
+[node name="Location24" type="Position3D" parent="PileLocations"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -3 )
+
+[node name="Location25" type="Position3D" parent="PileLocations"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.68766, 0, -10.4736 )
+
+[node name="Location26" type="Position3D" parent="PileLocations"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.68514, 0, -4.62498 )
+
+[node name="Location27" type="Position3D" parent="PileLocations"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.45887, 0, -2.12085 )
+
+[node name="Location28" type="Position3D" parent="PileLocations"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1303, 0, -0.872552 )

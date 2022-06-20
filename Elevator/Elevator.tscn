@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://MainGame/MenuSpawner.gd" type="Script" id=1]
+[ext_resource path="res://Elevator/LevelSelect.tscn" type="PackedScene" id=2]
+
+[node name="Elevator" type="Spatial"]
+script = ExtResource( 1 )
+menu = ExtResource( 2 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+use_collision = true
+collision_mask = 7
+height = 2.0
+
+[node name="CSGCylinder2" type="CSGCylinder" parent="CSGCylinder"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0296824, -0.0997772 )
+operation = 2
+radius = 0.907123
+height = 2.0

@@ -5,7 +5,6 @@ export(float) var movement_acceleration:float = 0.2
 var volition_vector:Vector3 = Vector3()
 var movement_vector:Vector3 = Vector3()
 
-var interaction_target:Node = null
 onready var use_ray:RayCast = $PlayerFacing/UseRay
 onready var use_area:Area = $PlayerFacing/UseArea
 onready var player_facing_pivot = $PlayerFacing
@@ -55,7 +54,8 @@ func handle_interact_input():
 	# TODO: On mouse press, start to highlight stuff.  On release, 'interact'.
 	if Input.is_action_just_pressed("ui_accept"):
 		# Operator overloading.
-		interact_with_region() or interact_with_ray()
+		#interact_with_region() or interact_with_ray()
+		interact_with_ray()
 
 func interact_with_region():
 	for collider in self.use_area.get_overlapping_bodies():
@@ -64,17 +64,16 @@ func interact_with_region():
 	return false
 
 func interact_with_ray():
-	if use_ray.is_colliding():
-		var collider = use_ray.get_collider()
+	if self.use_ray.is_colliding():
+		var collider = self.use_ray.get_collider()
 		return try_interact(collider)
 	return false
 
 func try_interact(collider):
 	# Attempts to interact with the object or with a parent.
 	# Move up the stack and keep trying things until we get a hit.
-	while collider != null and is_instance_valid(collider) and collider != get_tree().root:
+	while collider != null and is_instance_valid(collider) and collider != get_tree().root and collider.is_inside_tree():
 		if collider.has_method("interact"):
-			self.interaction_target = collider
 			collider.interact(self)
 			return true
 		else:

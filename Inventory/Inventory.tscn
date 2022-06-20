@@ -8,8 +8,16 @@
 
 [node name="Inventory" type="PanelContainer"]
 visible = false
-margin_right = 78.0
-margin_bottom = 78.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -39.0
+margin_top = -39.0
+margin_right = 39.0
+margin_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource( 1 )
 empty_cell_texture = ExtResource( 6 )
 full_cell_texture = ExtResource( 4 )

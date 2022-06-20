@@ -2,25 +2,44 @@ extends Spatial
 
 onready var rooms:Spatial = $Room
 onready var player:Spatial = $Player
+var current_dungeon:Spatial
+var last_dungeon_difficulty:int = 0
 
 var waste_disposal_level_generator = preload("res://WasteDisposalLevel/WasteDisposalLevel.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.start_dungeon()
-
-func start_dungeon():
-	self.remove_child(self.rooms)
-	var dungeon = waste_disposal_level_generator.instance()
-	self.add_child(dungeon)
-	self.player.translation = Vector3(0, 0, 0)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+	Globals.rng.randomize()
+	#self.start_dungeon()
+	
 func _process(delta):
 	if Input.is_action_just_released("ui_home"):
 		self.save_game("user://save_game_" + Globals.player_name + ".json")
 	if Input.is_action_just_released("ui_end"):
 		self.load_game("user://save_game_" + Globals.player_name + ".json")
+
+func start_dungeon(difficulty:int):
+	if self.last_dungeon_difficulty != difficulty:
+		self.last_dungeon_difficulty = difficulty  # Keep the player going to different floors
+		self.remove_child(self.rooms)
+		var dungeon = waste_disposal_level_generator.instance()
+		dungeon.generate(difficulty)
+		self.current_dungeon = dungeon
+		self.add_child(dungeon)
+		var elevator:Spatial = self.current_dungeon.find_node("Elevator", true)
+		if elevator == null:
+			printerr("Dungeon has no elevator exit that can be found.  Defaulting to center!")
+			self.player.translation = Vector3(0, 0, 0)
+		else:
+			self.player.translation = elevator.translation
+
+func finish_dungeon():
+	if self.current_dungeon != null:
+		self.remove_child(self.current_dungeon)
+		self.current_dungeon.queue_free()
+		self.current_dungeon = null
+		self.player.translation = Vector3(0, 0, 0)
+		self.add_child(self.rooms)
 
 func change_scene(new_scene:String, target_location_path:String):
 	rooms.set_active_layout(new_scene)
@@ -64,8 +83,6 @@ func load_game(filename:String):
 	self.add_child(self.rooms)
 	
 	fin.close()
-	
-	pass
 
 #
 # TODO!!!!
@@ -86,7 +103,7 @@ func save_game(filename:String):
 	pass
 	
 	# Saves the state of the player and the rooms as they are.
-	# Will call _save_room on the given object and the player.
+	# Will call save on the given object and the player.
 	var fout = File.new()
 	fout.open(filename, File.WRITE)
 	
@@ -97,8 +114,3 @@ func save_game(filename:String):
 	
 	fout.store_line(to_json(save_state))
 	fout.close()
-
-func _save_room(node:Node) -> Dictionary:
-	# Expected that anything which needs to be persisted will implement a save method that returns a Dictionary.
-	# HACK: Everything that implements save has to give back a resource inside which says what to instance.
-	return node.save()

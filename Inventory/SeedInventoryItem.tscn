@@ -5,3 +5,4 @@
 
 [node name="InventoryTrait" instance=ExtResource( 2 )]
 texture_normal = ExtResource( 1 )
+hack_reflection_resource_name = "res://Inventory/SeedInventoryItem.tscn"

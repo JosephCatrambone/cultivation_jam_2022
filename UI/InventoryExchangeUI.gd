@@ -2,11 +2,11 @@ extends Panel
 
 var left_entity:Node
 var left_inventory:Node
-onready var left_ui_pane:ReferenceRect = $HBoxContainer/LeftRefRect
+onready var left_ui_pane:Container = $HBoxContainer/LeftInv
 
 var right_entity:Node
 var right_inventory:Node
-onready var right_ui_pane:ReferenceRect = $HBoxContainer/RightRefRect
+onready var right_ui_pane:Container = $HBoxContainer/RightInv
 
 # All inventories need to be named this!
 export(String) var inventory_identifier_string:String = "Inventory"

@@ -255,6 +255,14 @@ func _valid_position(item:InventoryItem, x:int, y:int) -> bool:
 	# If there are no open spaces that fit, returns false.
 	# Returns true if the item was added successfully.
 	# Sets the item's position in the inventory, snapping to grid.
+	for dxdy in item.occupied_cells:
+		var xprime = x+dxdy[0]
+		var yprime = y+dxdy[1]
+		if xprime < 0 or yprime < 0 or xprime >= self.width or yprime >= self.height:
+			return false
+		var idx = self._xy_to_idx(x+dxdy[0], y+dxdy[1])
+		if self.cell_to_item[idx] != null:
+			return false
 	return true
 
 func add_item(item:InventoryItem) -> bool:
@@ -267,6 +275,12 @@ func add_item(item:InventoryItem) -> bool:
 				self._update_cell_status()
 				return true
 	return false
+
+func get_items() -> Array:
+	var res = []
+	for item in self.items:
+		res.append(item)
+	return res
 	
 func save() -> Dictionary:
 	return {}

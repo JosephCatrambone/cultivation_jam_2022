@@ -1,0 +1,81 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Elevator/LevelSelect.gd" type="Script" id=1]
+
+[node name="Control" type="Panel"]
+anchor_left = 0.25
+anchor_right = 0.75
+anchor_bottom = 1.0
+margin_top = 50.0
+margin_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource( 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 15
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+margin_top = 248.0
+margin_right = 400.0
+margin_bottom = 248.0
+
+[node name="MaintAccessLabel" type="Label" parent="VBoxContainer"]
+margin_top = 263.0
+margin_right = 400.0
+margin_bottom = 277.0
+text = "MAINTENANCE ACCESS ELEVATOR"
+align = 1
+
+[node name="BotanicalRingButton" type="Button" parent="VBoxContainer"]
+margin_top = 292.0
+margin_right = 400.0
+margin_bottom = 312.0
+focus_neighbour_top = NodePath("../WasteDisposalLevel4Button")
+focus_neighbour_bottom = NodePath("../WasteDisposalLevel1Button")
+focus_next = NodePath("../WasteDisposalLevel1Button")
+focus_previous = NodePath("../WasteDisposalLevel4Button")
+text = "Botanical Ring"
+
+[node name="WasteDisposalLevel1Button" type="Button" parent="VBoxContainer"]
+margin_top = 327.0
+margin_right = 400.0
+margin_bottom = 347.0
+focus_neighbour_top = NodePath("../BotanicalRingButton")
+focus_neighbour_bottom = NodePath("../WasteDisposalLevel2Button")
+focus_next = NodePath("../WasteDisposalLevel2Button")
+focus_previous = NodePath("../BotanicalRingButton")
+text = "Waste Disposal Level 1"
+
+[node name="WasteDisposalLevel2Button" type="Button" parent="VBoxContainer"]
+margin_top = 362.0
+margin_right = 400.0
+margin_bottom = 382.0
+focus_neighbour_top = NodePath("../WasteDisposalLevel1Button")
+focus_neighbour_bottom = NodePath("../WasteDisposalLevel3Button")
+focus_next = NodePath("../WasteDisposalLevel3Button")
+focus_previous = NodePath("../WasteDisposalLevel1Button")
+text = "Waste Disposal Level 2"
+
+[node name="WasteDisposalLevel3Button" type="Button" parent="VBoxContainer"]
+margin_top = 397.0
+margin_right = 400.0
+margin_bottom = 417.0
+focus_neighbour_top = NodePath("../WasteDisposalLevel2Button")
+focus_neighbour_bottom = NodePath("../WasteDisposalLevel4Button")
+focus_next = NodePath("../WasteDisposalLevel4Button")
+focus_previous = NodePath("../WasteDisposalLevel2Button")
+text = "Waste Disposal Level 3"
+
+[node name="WasteDisposalLevel4Button" type="Button" parent="VBoxContainer"]
+margin_top = 432.0
+margin_right = 400.0
+margin_bottom = 452.0
+focus_neighbour_top = NodePath("../WasteDisposalLevel3Button")
+focus_neighbour_bottom = NodePath("../BotanicalRingButton")
+focus_next = NodePath("../BotanicalRingButton")
+focus_previous = NodePath("../WasteDisposalLevel3Button")
+text = "Waste Disposal Level 4"
