@@ -278,7 +278,7 @@ func add_item(item:InventoryItem) -> bool:
 
 func get_items() -> Array:
 	var res = []
-	for item in self.items:
+	for item in self.items.get_children():
 		res.append(item)
 	return res
 	

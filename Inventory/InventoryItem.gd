@@ -33,6 +33,7 @@ func get_texture() -> Texture:
 
 func get_physical_item() -> Spatial:
 	if self.spawned_node_reference == null:
+		# Unspawned node ref may be null.
 		var instance = unspawned_node_reference.instance()
 		self.spawned_node_reference = instance
 	return self.spawned_node_reference
