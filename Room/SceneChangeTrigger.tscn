@@ -2,6 +2,7 @@
 
 [ext_resource path="res://Room/SceneChangeTrigger.gd" type="Script" id=1]
 
-[node name="SceneChangeTrigger" type="Area"]
-collision_mask = 2
+[node name="SceneChangeTrigger" type="StaticBody"]
+collision_layer = 4
+collision_mask = 7
 script = ExtResource( 1 )

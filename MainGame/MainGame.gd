@@ -23,7 +23,7 @@ func start_dungeon(difficulty:int):
 		self.last_dungeon_difficulty = difficulty  # Keep the player going to different floors
 		self.remove_child(self.rooms)
 		var dungeon = waste_disposal_level_generator.instance()
-		dungeon.generate(difficulty)
+		#dungeon.call_deferred("generate", difficulty) # Dungeon will auto-generate
 		self.current_dungeon = dungeon
 		self.add_child(dungeon)
 		var elevator:Spatial = self.current_dungeon.find_node("Elevator", true)
@@ -35,10 +35,11 @@ func start_dungeon(difficulty:int):
 
 func finish_dungeon():
 	if self.current_dungeon != null:
+		self.last_dungeon_difficulty = 0
+		self.player.translation = Vector3(0, 0, 0)
 		self.remove_child(self.current_dungeon)
 		self.current_dungeon.queue_free()
 		self.current_dungeon = null
-		self.player.translation = Vector3(0, 0, 0)
 		self.add_child(self.rooms)
 
 func change_scene(new_scene:String, target_location_path:String):

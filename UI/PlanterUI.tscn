@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://UI/PlanterUI.gd" type="Script" id=1]
+
+[node name="PlanterUI" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 25.0
+margin_top = 25.0
+margin_right = -25.0
+margin_bottom = -25.0
+script = ExtResource( 1 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+
+[node name="LeftInv" type="CenterContainer" parent="HBoxContainer"]
+margin_left = 373.0
+margin_right = 373.0
+margin_bottom = 750.0
+
+[node name="RightInv" type="CenterContainer" parent="HBoxContainer"]
+margin_left = 377.0
+margin_right = 377.0
+margin_bottom = 750.0

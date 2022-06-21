@@ -95,6 +95,7 @@ script = ExtResource( 1 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="Ground" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 enabled = true
 
 [node name="PlayerFacing" type="Spatial" parent="."]

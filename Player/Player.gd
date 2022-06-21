@@ -8,6 +8,7 @@ var movement_vector:Vector3 = Vector3()
 onready var use_ray:RayCast = $PlayerFacing/UseRay
 onready var use_area:Area = $PlayerFacing/UseArea
 onready var player_facing_pivot = $PlayerFacing
+onready var ground_ray:RayCast = $Ground
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,6 +27,10 @@ func _process(delta):
 		return
 	self.handle_movement_input(delta)
 	self.handle_interact_input()
+	if not self.ground_ray.is_colliding():
+		var gravity_vector:Vector3 = ProjectSettings.get_setting("physics/3d/default_gravity_vector")
+		var gravity_magnitude:float = ProjectSettings.get_setting("physics/3d/default_gravity")
+		self.move_and_collide(gravity_vector*gravity_magnitude)
 
 func save() -> Dictionary:
 	var save_state = {
@@ -52,7 +57,7 @@ func handle_movement_input(delta):
 # raycast to just one.
 func handle_interact_input():
 	# TODO: On mouse press, start to highlight stuff.  On release, 'interact'.
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_released("ui_accept"):
 		# Operator overloading.
 		#interact_with_region() or interact_with_ray()
 		interact_with_ray()
