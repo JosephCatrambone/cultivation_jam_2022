@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Room/Room.gd" type="Script" id=1]
 [ext_resource path="res://Room/SceneChangeTrigger.tscn" type="PackedScene" id=2]
-[ext_resource path="res://ModuleFloorTile/ModuleFloorTile.tscn" type="PackedScene" id=4]
+[ext_resource path="res://FloorItem/ModuleFloorTile.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Pickups/SeedPickup.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Elevator/Elevator.tscn" type="PackedScene" id=6]
 
