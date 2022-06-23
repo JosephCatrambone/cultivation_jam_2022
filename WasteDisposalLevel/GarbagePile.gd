@@ -8,27 +8,27 @@ var loot_by_tier = [
 	# Level 0 loot:
 	[
 		preload("res://Inventory/SeedInventoryItem.tscn"),
-		preload("res://Inventory/DirtPlanterInventoryItem.tscn"),
+		preload("res://FloorItem/DirtPlanter/DirtPlanterInventoryItem.tscn"),
 	],
 	# Level 1 loot:
 	[
 		preload("res://Inventory/SeedInventoryItem.tscn"),
-		preload("res://Inventory/DirtPlanterInventoryItem.tscn"),
+		preload("res://FloorItem/DirtPlanter/DirtPlanterInventoryItem.tscn"),
 	],
 	# Level 2 loot:
 	[
 		preload("res://Inventory/SeedInventoryItem.tscn"),
-		preload("res://Inventory/DirtPlanterInventoryItem.tscn"),
+		preload("res://FloorItem/DirtPlanter/DirtPlanterInventoryItem.tscn"),
 	],
 	# Level 3 loot:
 	[
 		preload("res://Inventory/SeedInventoryItem.tscn"),
-		preload("res://Inventory/DirtPlanterInventoryItem.tscn"),
+		preload("res://FloorItem/DirtPlanter/DirtPlanterInventoryItem.tscn"),
 	],
 	# Level 4 loot:
 	[
 		preload("res://Inventory/SeedInventoryItem.tscn"),
-		preload("res://Inventory/DirtPlanterInventoryItem.tscn"),
+		preload("res://FloorItem/DirtPlanter/DirtPlanterInventoryItem.tscn"),
 	]
 ]
 

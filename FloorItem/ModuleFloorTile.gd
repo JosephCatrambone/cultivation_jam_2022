@@ -8,27 +8,49 @@ extends StaticBody
 var exchange_ui:PackedScene = preload("res://UI/InventoryExchangeUI.tscn")
 var planter:Node
 onready var inventory = $Inventory
-onready var floor_tile_mesh:MeshInstance = $FloorTileMesh
-onready var dirt_planter_mesh:MeshInstance = $DirtPlanterMesh
+onready var mesh:MeshInstance = $FloorTileMesh
+onready var collision_shape:CollisionShape = $CollisionShape
 var player_interacted:bool = false  # Used to maybe detect changes.
 
 func _ready():
 	pass
 
+func _on_item_dragged_in(item, _dx, _dy):
+	# Monitor for when an item is dragged in.  If it's a planter, set it up.
+	if item is InventoryItem and item.name.find("Planter"):
+		var new_planter = item.get_physical_item()
+		self.planter = new_planter
+		self.add_child(planter)
+
 func _process(delta):
+	# Can we make this run less often?
+	
+	self.mesh.visible = (self.planter == null)
+	self.collision_shape.disabled = (self.planter != null)
+	
+	# Check if the planter is removed:
 	if self.player_interacted:
 		if Globals.active_menu != null:
 			return  # Player is still interacting.  Hack to make this only register the change on menu close.
 		self.player_interacted = false  # Reset the trigger.
+		
+		# HACK:
+		# If the player happened to remove the child planter, then let's assume that they got one in their inventory.
+		# Remove and discard the items from our inventory, then mark self as visible.
+		if self.planter == null:
+			pass
+		
+		"""
 		var inv_items = self.inventory.get_items()
 		# This is an awful hack.
 		for item in inv_items:
 			if item is InventoryItem and item.name.find("Planter"):
-				var new_planter = item.get_physical_item()
-				self.planter = new_planter
+				
+				
 		# Maybe render planter
 		self.dirt_planter_mesh.visible = (self.planter != null)
 		self.floor_tile_mesh.visible = (self.planter == null)
+		"""
 
 func interact(actor:Node = null, args = null):
 	self.player_interacted = true

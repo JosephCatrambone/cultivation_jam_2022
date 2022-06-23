@@ -4,6 +4,8 @@ extends Control
 
 signal cursor_moved_out(dx, dy)  # When a cursor moves out of the frame, this is emitted.  dx is -1 for left side, +1 for right.  dy is -1 for top, +1 for bottom.  Will be emitted in addition to calling on_entered on the neighbor.
 signal item_dragged_out(item, dx, dy)  # When the cursor moves out of frame with an item dragged, this is emitted.
+signal cursor_moved_in(dx, dy)  # Emitted immediately after a cursor enters.  You probably don't want to use this.
+signal item_dragged_in(item, dx, dy)  # Fired immediately after an object is dragged in.  You probably don't want to use it.
 
 const CURSOR_MOVE_TIME:float = 0.1
 const MIN_MOVE_THRESHOLD:float = 0.1
@@ -224,6 +226,7 @@ func on_item_dragged_in(item:InventoryItem, dx:int = 0, dy:int = 0):
 	var new_size = Vector2(self.dragged_item.inventory_width*CELL_WIDTH, self.dragged_item.inventory_height*CELL_HEIGHT)
 	self.cursor_tween.interpolate_property(cursor, "rect_size", cursor.rect_size, new_size, CURSOR_MOVE_TIME)
 	self.cursor_tween.start()
+	emit_signal("item_dragged_in", item, dx, dy)
 
 func on_cursor_moved_in(dx:int = 0, dy:int = 0):
 	# This, generally, is called by on_item_dragged_in and by start_drag.  (Or by signal.)
@@ -248,6 +251,7 @@ func on_cursor_moved_in(dx:int = 0, dy:int = 0):
 		print_debug("Cursor came from some direction: ", dx, " ", dy, " with new position ", self.cursor.rect_position)
 	print_debug(self.name, " on_cursor_moved: ", self.cursor_idx)
 	self._update_cursor_position()
+	emit_signal("cursor_moved_in", dx, dy)
 
 func _valid_position(item:InventoryItem, x:int, y:int) -> bool:
 	# If the item does not have an InventoryItem, checks to see if there's a direct child with an inventory item.

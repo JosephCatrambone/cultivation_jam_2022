@@ -8,11 +8,12 @@ const INVENTORY_CELL_HEIGHT:int = 64
 export(int) var inventory_width:int = 1
 export(int) var inventory_height:int = 1
 export(String) var hack_reflection_resource_name:String
+export(PackedScene) var unspawned_node_reference:PackedScene
+var spawned_node_reference:Spatial  # Might be a reference to an existing packed scene.
 
 var occupied_cells:Array = []
 var inventory_rotation:int = 0
-var spawned_node_reference:Spatial
-var unspawned_node_reference:PackedScene
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
