@@ -6,6 +6,7 @@
 extends StaticBody
 
 var exchange_ui:PackedScene = preload("res://UI/InventoryExchangeUI.tscn")
+var inventory_planter:InventoryItem
 var planter:Node
 onready var inventory = $Inventory
 onready var mesh:MeshInstance = $FloorTileMesh
@@ -13,20 +14,23 @@ onready var collision_shape:CollisionShape = $CollisionShape
 var player_interacted:bool = false  # Used to maybe detect changes.
 
 func _ready():
-	pass
+	self.inventory.connect("item_dragged_in", self, "_on_item_dragged_in")
 
 func _on_item_dragged_in(item, _dx, _dy):
 	# Monitor for when an item is dragged in.  If it's a planter, set it up.
 	if item is InventoryItem and item.name.find("Planter"):
-		var new_planter = item.get_physical_item()
-		self.planter = new_planter
-		self.add_child(planter)
+		self.inventory_planter = item
 
 func _process(delta):
-	# Can we make this run less often?
+	# If we just had an inventory item dragged in, inventory will be not null.
+	if self.inventory_planter != null:
+		var new_planter = self.inventory_planter.get_physical_item()
+		self.planter = new_planter
+		self.add_child(planter)
+		self.inventory_planter = null  # Convert the planter from an inventory item to a real item.
 	
-	self.mesh.visible = (self.planter == null)
-	self.collision_shape.disabled = (self.planter != null)
+		self.mesh.visible = (self.planter == null)
+		self.collision_shape.disabled = (self.planter != null)
 	
 	# Check if the planter is removed:
 	if self.player_interacted:

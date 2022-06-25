@@ -13,10 +13,11 @@ func _ready():
 	#self.start_dungeon()
 	
 func _process(delta):
-	if Input.is_action_just_released("ui_home"):
-		self.save_game("user://save_game_" + Globals.player_name + ".json")
-	if Input.is_action_just_released("ui_end"):
-		self.load_game("user://save_game_" + Globals.player_name + ".json")
+	pass
+	#if Input.is_action_just_released("ui_home"):
+	#	self.save_game("user://save_game_" + Globals.player_name + ".json")
+	#if Input.is_action_just_released("ui_end"):
+	#	self.load_game("user://save_game_" + Globals.player_name + ".json")
 
 func start_dungeon(difficulty:int):
 	if self.last_dungeon_difficulty != difficulty:
@@ -59,7 +60,7 @@ func change_scene(new_scene:String, target_location_path:String):
 #  - Upside: much faster when not in use.
 #  - Upside: gives us the save/load logic.
 
-func load_game(filename:String):
+func load_game(var filename:String):
 	# Spawn a new resource, add to itself as a named child, and return the object.
 	
 	var fin = File.new()
@@ -91,7 +92,7 @@ func load_game(filename:String):
 # It will mean we can do load(x).instance() when .save() is not implemented.
 #
 
-func save_game(filename:String):
+func save_game(var filename:String):
 	# This is cool but will take too long to figure out.  Maybe come back to it?
 	#var resource_save_location = "user://" + Globals.save_game_name + "__" + node.name + ".tscn"
 	#node.get_parent().remove_child(node)

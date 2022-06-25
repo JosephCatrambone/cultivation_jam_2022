@@ -1,6 +1,5 @@
 extends Spatial
 
-export(Resource) var inventory_class:Resource
 export(NodePath) var inventory_item_path:NodePath
 var inventory_item:Node
 
@@ -18,7 +17,5 @@ func interact(actor:Node, args = null):
 		if child.has_method("add_item"):
 			if self.inventory_item != null:
 				child.add_item(self.inventory_item)
-			elif self.inventory_class != null:
-				var inst = self.inventory_class.instance()
-				child.add_item(inst)
-			self.queue_free()
+				self.queue_free()
+				return

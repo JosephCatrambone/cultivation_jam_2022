@@ -1,0 +1,249 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://MainMenu/MainMenu.gd" type="Script" id=1]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="MainPanel" type="Panel" parent="."]
+anchor_left = 0.25
+anchor_top = 0.25
+anchor_right = 0.75
+anchor_bottom = 0.75
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainPanel"]
+anchor_left = 0.25
+anchor_top = 0.25
+anchor_right = 0.75
+anchor_bottom = 0.75
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 15
+
+[node name="Label" type="Label" parent="MainPanel/VBoxContainer"]
+margin_right = 200.0
+margin_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Main menu"
+align = 1
+valign = 1
+
+[node name="NewGameButton" type="Button" parent="MainPanel/VBoxContainer"]
+visible = false
+margin_top = 29.0
+margin_right = 200.0
+margin_bottom = 49.0
+text = "New Game"
+
+[node name="SaveGameButton" type="Button" parent="MainPanel/VBoxContainer"]
+margin_top = 29.0
+margin_right = 200.0
+margin_bottom = 49.0
+text = "Save Game"
+
+[node name="LoadGameButton" type="Button" parent="MainPanel/VBoxContainer"]
+margin_top = 64.0
+margin_right = 200.0
+margin_bottom = 84.0
+text = "Load Game"
+
+[node name="SettingsButton" type="Button" parent="MainPanel/VBoxContainer"]
+margin_top = 99.0
+margin_right = 200.0
+margin_bottom = 119.0
+text = "Settings"
+
+[node name="QuitToTitleButton" type="Button" parent="MainPanel/VBoxContainer"]
+margin_top = 134.0
+margin_right = 200.0
+margin_bottom = 154.0
+text = "Quit to Title"
+
+[node name="QuitButton" type="Button" parent="MainPanel/VBoxContainer"]
+margin_top = 169.0
+margin_right = 200.0
+margin_bottom = 189.0
+text = "Quit"
+
+[node name="SettingsPanel" type="Panel" parent="."]
+visible = false
+anchor_left = 0.25
+anchor_top = 0.25
+anchor_right = 0.75
+anchor_bottom = 0.75
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsPanel"]
+anchor_left = 0.25
+anchor_top = 0.25
+anchor_right = 0.75
+anchor_bottom = 0.75
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 15
+
+[node name="Label" type="Label" parent="SettingsPanel/VBoxContainer"]
+margin_right = 200.0
+margin_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Settings"
+align = 1
+valign = 1
+
+[node name="BackButton" type="Button" parent="SettingsPanel/VBoxContainer"]
+margin_top = 29.0
+margin_right = 200.0
+margin_bottom = 49.0
+text = "Back"
+
+[node name="HSeparator" type="HSeparator" parent="SettingsPanel/VBoxContainer"]
+margin_top = 64.0
+margin_right = 200.0
+margin_bottom = 68.0
+
+[node name="VolumeLabel" type="Label" parent="SettingsPanel/VBoxContainer"]
+margin_top = 83.0
+margin_right = 200.0
+margin_bottom = 97.0
+text = "Volume:"
+align = 1
+valign = 1
+
+[node name="VolumeControls" type="HBoxContainer" parent="SettingsPanel/VBoxContainer"]
+margin_top = 112.0
+margin_right = 200.0
+margin_bottom = 162.0
+
+[node name="VolumeDown" type="Button" parent="SettingsPanel/VBoxContainer/VolumeControls"]
+margin_right = 17.0
+margin_bottom = 50.0
+text = "-"
+
+[node name="VolumeBar" type="ProgressBar" parent="SettingsPanel/VBoxContainer/VolumeControls"]
+margin_left = 21.0
+margin_right = 176.0
+margin_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 0, 50 )
+size_flags_horizontal = 3
+step = 1.0
+value = 50.0
+rounded = true
+
+[node name="VolumeUp" type="Button" parent="SettingsPanel/VBoxContainer/VolumeControls"]
+margin_left = 180.0
+margin_right = 200.0
+margin_bottom = 50.0
+text = "+"
+
+[node name="NewGamePanel" type="Panel" parent="."]
+visible = false
+anchor_left = 0.25
+anchor_top = 0.25
+anchor_right = 0.75
+anchor_bottom = 0.75
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NewGamePanel"]
+anchor_left = 0.25
+anchor_top = 0.25
+anchor_right = 0.75
+anchor_bottom = 0.75
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 15
+
+[node name="Label" type="Label" parent="NewGamePanel/VBoxContainer"]
+margin_right = 200.0
+margin_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Main menu"
+align = 1
+valign = 1
+
+[node name="NewGameButton" type="Button" parent="NewGamePanel/VBoxContainer"]
+margin_top = 29.0
+margin_right = 200.0
+margin_bottom = 49.0
+text = "New Game"
+
+[node name="LoadGameButton" type="Button" parent="NewGamePanel/VBoxContainer"]
+margin_top = 64.0
+margin_right = 200.0
+margin_bottom = 84.0
+text = "Load Game"
+
+[node name="SettingsButton" type="Button" parent="NewGamePanel/VBoxContainer"]
+margin_top = 99.0
+margin_right = 200.0
+margin_bottom = 119.0
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="NewGamePanel/VBoxContainer"]
+margin_top = 134.0
+margin_right = 200.0
+margin_bottom = 154.0
+text = "Quit"
+
+[node name="LoadGamePanel" type="Panel" parent="."]
+visible = false
+anchor_left = 0.25
+anchor_top = 0.25
+anchor_right = 0.75
+anchor_bottom = 0.75
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LoadGamePanel"]
+anchor_left = 0.25
+anchor_top = 0.25
+anchor_right = 0.75
+anchor_bottom = 0.75
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 15
+
+[node name="Label" type="Label" parent="LoadGamePanel/VBoxContainer"]
+margin_right = 200.0
+margin_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Main menu"
+align = 1
+valign = 1
+
+[node name="NewGameButton" type="Button" parent="LoadGamePanel/VBoxContainer"]
+margin_top = 29.0
+margin_right = 200.0
+margin_bottom = 49.0
+text = "New Game"
+
+[node name="LoadGameButton" type="Button" parent="LoadGamePanel/VBoxContainer"]
+margin_top = 64.0
+margin_right = 200.0
+margin_bottom = 84.0
+text = "Load Game"
+
+[node name="SettingsButton" type="Button" parent="LoadGamePanel/VBoxContainer"]
+margin_top = 99.0
+margin_right = 200.0
+margin_bottom = 119.0
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="LoadGamePanel/VBoxContainer"]
+margin_top = 134.0
+margin_right = 200.0
+margin_bottom = 154.0
+text = "Quit"
+
+[connection signal="pressed" from="MainPanel/VBoxContainer/NewGameButton" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="MainPanel/VBoxContainer/SaveGameButton" to="." method="_on_save_game_pressed"]
+[connection signal="pressed" from="MainPanel/VBoxContainer/LoadGameButton" to="." method="_on_load_game_pressed"]
+[connection signal="pressed" from="MainPanel/VBoxContainer/SettingsButton" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MainPanel/VBoxContainer/QuitToTitleButton" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="MainPanel/VBoxContainer/QuitButton" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="SettingsPanel/VBoxContainer/BackButton" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="SettingsPanel/VBoxContainer/VolumeControls/VolumeDown" to="." method="_on_volume_down_pressed"]
+[connection signal="pressed" from="SettingsPanel/VBoxContainer/VolumeControls/VolumeUp" to="." method="_on_volume_up_pressed"]
