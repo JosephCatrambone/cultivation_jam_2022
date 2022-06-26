@@ -285,9 +285,3 @@ func get_items() -> Array:
 	for item in self.items.get_children():
 		res.append(item)
 	return res
-	
-func save() -> Dictionary:
-	return {}
-
-func restore(saved_state:Dictionary) -> void:
-	pass

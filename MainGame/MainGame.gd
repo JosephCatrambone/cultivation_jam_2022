@@ -60,31 +60,13 @@ func change_scene(new_scene:String, target_location_path:String):
 #  - Upside: much faster when not in use.
 #  - Upside: gives us the save/load logic.
 
-func load_game(var filename:String):
+func load_game():
 	# Spawn a new resource, add to itself as a named child, and return the object.
 	
-	var fin = File.new()
-	fin.open(filename, File.READ)
-	
-	var saved_state = parse_json(fin.get_line())
-	
-	# Destroy old room and old player:
-	self.remove_child(self.player)
-	self.player.queue_free()
-	self.remove_child(self.rooms)
-	self.rooms.queue_free()
-	
-	# Restore the player:
-	self.player = load(saved_state["player"]["resource"]).instance()
-	self.player.restore(saved_state["player"])
-	self.add_child(self.player)
-	
-	# Restore the level.
-	self.rooms = load(saved_state["rooms"]["resource"]).instance()
-	self.rooms.restore(saved_state["rooms"])
-	self.add_child(self.rooms)
-	
-	fin.close()
+	var game = SaveGame.load_game()
+	self.player = game.player
+	self.rooms = game.world_state
+	Globals.emit_signal("player_spawned", self.player)
 
 #
 # TODO!!!!
@@ -92,7 +74,7 @@ func load_game(var filename:String):
 # It will mean we can do load(x).instance() when .save() is not implemented.
 #
 
-func save_game(var filename:String):
+func save_game():
 	# This is cool but will take too long to figure out.  Maybe come back to it?
 	#var resource_save_location = "user://" + Globals.save_game_name + "__" + node.name + ".tscn"
 	#node.get_parent().remove_child(node)
@@ -102,17 +84,9 @@ func save_game(var filename:String):
 	#	ResourceSaver.save(resource_save_location, scene)
 	#node.queue_free()
 	
-	pass
+	var save = SaveGame.new()
+	save.player = self.player
+	save.world_state = self.rooms
+	save.save_game()
+	return
 	
-	# Saves the state of the player and the rooms as they are.
-	# Will call save on the given object and the player.
-	var fout = File.new()
-	fout.open(filename, File.WRITE)
-	
-	var save_state:Dictionary = {
-		"player": self.player.save(),
-		"rooms": self.rooms.save()
-	}
-	
-	fout.store_line(to_json(save_state))
-	fout.close()

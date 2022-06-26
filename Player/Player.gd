@@ -32,15 +32,6 @@ func _process(delta):
 		var gravity_magnitude:float = ProjectSettings.get_setting("physics/3d/default_gravity")
 		self.move_and_collide(gravity_vector*gravity_magnitude)
 
-func save() -> Dictionary:
-	var save_state = {
-		"resource": "res://Player/Player.tscn"
-	}
-	return save_state
-
-func restore(saved_state:Dictionary):
-	pass
-
 func handle_movement_input(delta):
 	# Get the direction the user is pressing.
 	var axis_x:float = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")

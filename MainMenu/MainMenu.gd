@@ -3,7 +3,6 @@ extends Control
 const MASTER_BUS_INDEX: int = 0
 const MIN_DB_VALUE: int = -60
 const MAX_DB_VALUE:int = 10
-const DEFAULT_SAVE_NAME:String = "user://void_farmer_save.tscn"
 
 onready var main_panel:Panel = $MainPanel
 onready var new_game_panel:Panel = $NewGamePanel
@@ -53,6 +52,11 @@ func show_submenu(panel:Panel):
 func _on_back_pressed():
 	self.show_submenu(self.main_panel)
 
+func _close_menu():
+	self._on_back_pressed()
+	Globals.active_menu = null
+	self.visible = false
+
 #
 # Main Menu Buttons
 #
@@ -66,9 +70,11 @@ func _on_save_game_pressed():
 	var main_game = get_tree().root.get_node_or_null("MainGame")
 	if main_game == null:
 		printerr("On Save invoked in main menu somehow or MainGame not found.")
-	main_game.save_game(DEFAULT_SAVE_NAME)
+	self._close_menu()
+	main_game.save_game()
 	
 func _on_load_game_pressed():
+	self._close_menu()
 	self._on_new_game_pressed()
 	call_deferred("_post_load")
 
@@ -76,7 +82,7 @@ func _post_load():
 	var main_game = get_tree().root.get_node_or_null("MainGame")
 	if main_game == null:
 		printerr("On Save invoked in main menu somehow or MainGame not found.")
-	main_game.load_game(DEFAULT_SAVE_NAME)
+	main_game.load_game()
 
 func _on_settings_pressed():
 	self.show_submenu(self.settings_panel)

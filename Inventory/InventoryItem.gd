@@ -39,21 +39,3 @@ func get_physical_item() -> Spatial:
 		self.spawned_node_reference = instance
 	return self.spawned_node_reference
 
-func save() -> Dictionary:
-	var state = {
-		"inv_width": self.inventory_width,
-		"inv_height": self.inventory_height,
-		"resource": self.hack_reflection_resource_name,
-	}
-	if spawned_node_reference != null and spawned_node_reference.has_method("save"):
-		state["spawned_node_reference"] = spawned_node_reference.save()
-	#if unspawned_node_reference != null:
-	return state
-
-func restore(saved_state:Dictionary):
-	self.inventory_width = saved_state["inv_width"]
-	self.inventory_height = saved_state["inv_height"]
-	if saved_state.has("spawned_node_reference"):
-		var inst = load(saved_state["spawned_node_reference"]["resource"]).instance()
-		inst.restore(saved_state["spawned_node_reference"])
-		self.spawned_node_reference = inst
